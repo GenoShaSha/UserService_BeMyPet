@@ -1,4 +1,4 @@
-name: ServiceNow GitHub Actions Demo
+name: User Service Pipeline
 
 on:
   pull_request:

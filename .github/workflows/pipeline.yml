@@ -12,10 +12,12 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.17.x
+          go-version: 1.18.x
 
       - name: Build
-        run: go build -v ./...
+        run: |
+         run: go get .
+         go build -v ./...
 
       - name: Test
         run: go test -v ./...

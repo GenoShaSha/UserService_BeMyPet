@@ -1,13 +1,14 @@
-package main
+package userService
 
 import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"userService/user"
 )
 
 type Service interface {
-	GetUser(context.Context) (*User, error)
+	GetUser(context.Context) (*user.User, error)
 }
 
 type UserService struct {
@@ -20,14 +21,14 @@ func NewUserService(url string) Service {
 	}
 }
 
-func (s *UserService) GetUser(ctx context.Context) (*User, error) {
+func (s *UserService) GetUser(ctx context.Context) (*user.User, error) {
 	resp, err := http.Get(s.url)
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
 
-	data := &User{}
+	data := &user.User{}
 	if err := json.NewDecoder(resp.Body).Decode(data); err != nil {
 		return nil, err
 	}

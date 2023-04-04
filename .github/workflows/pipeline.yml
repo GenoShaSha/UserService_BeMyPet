@@ -13,7 +13,8 @@ jobs:
           go-version: '1.16.x'
       - name: Install dependencies
         run: |
-         go mod init github.com/GenoShaSha/UserService_BeMyPet
+         if ![ github.com/GenoShaSha/UserService_BeMyPet ]; then
+          go mod init github.com/GenoShaSha/UserService_BeMyPet
          go get .
       - name: Build
         run: go build -v ./...

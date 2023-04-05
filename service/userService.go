@@ -1,36 +1,21 @@
-package userService
+package service
 
 import (
-	"context"
-	"encoding/json"
-	"net/http"
-	"userMicroService/user"
+	"userMicroService/dbaccess"
+	"userMicroService/model"
+
+	"github.com/gin-gonic/gin"
 )
 
-type Service interface {
-	GetUser(context.Context) (*user.User, error)
-}
+func CreateUser(c *gin.Context) {
 
-type UserService struct {
-	url string
-}
+	ctx, _, usercollection := dbaccess.ConnectToDb()
 
-func NewUserService(url string) Service {
-	return &UserService{
-		url: url,
-	}
-}
+	var userCarrier model.User
+	c.BindJSON(&userCarrier)
 
-func (s *UserService) GetUser(ctx context.Context) (*user.User, error) {
-	resp, err := http.Get(s.url)
+	_, err := usercollection.InsertOne(ctx, userCarrier)
 	if err != nil {
-		return nil, err
+		panic(err)
 	}
-	defer resp.Body.Close()
-
-	data := &user.User{}
-	if err := json.NewDecoder(resp.Body).Decode(data); err != nil {
-		return nil, err
-	}
-	return data, nil
 }

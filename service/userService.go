@@ -10,19 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// func CreateUser(c *gin.Context) {
-
-// 	db := dbaccess.ConnectToDb()
-
-// 	var userCarrier model.User
-// 	c.BindJSON(&userCarrier)
-
-// 	_, err := usercollection.InsertOne(ctx, userCarrier)
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// }
-
 func RegisterUser(c *gin.Context) {
 	db := dbaccess.ConnectToDb()
 

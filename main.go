@@ -9,7 +9,13 @@ import (
 func main() {
 	router := gin.Default()
 
-	router.POST("/register", service.CreateUser)
+	router.POST("/register", service.RegisterUser)
+	router.GET("/users", service.GetUsers)
+	// router.GET("/products", GetProducts)
+	// router.GET("/products/:productId", GetSingleProduct)
+	// router.PUT("/products/:productId", UpdateProduct)
+	// router.DELETE("/products/:productId", DeleteProduct)
 
-	router.Run(":5000")
+	// Run the router
+	router.Run()
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"userMicroService/kafkaaccess"
 	"userMicroService/service"
 
 	"github.com/gin-gonic/gin"
@@ -18,4 +19,8 @@ func main() {
 
 	// Run the router
 	router.Run()
+
+	kafkaaccess.ConnectAndWriteMessage()
+	kafkaaccess.ConnectAndConsumeMessage()
+
 }

@@ -34,6 +34,7 @@ require (
 	github.com/pierrec/lz4/v4 v4.1.15 // indirect
 	github.com/radovskyb/watcher v1.0.7 // indirect
 	github.com/segmentio/kafka-go v0.4.39 // indirect
+	github.com/sirupsen/logrus v1.9.2 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/xdg/scram v1.0.5 // indirect

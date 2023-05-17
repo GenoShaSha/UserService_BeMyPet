@@ -1,0 +1,5 @@
+{"level":"info","msg":"Users retrieved successfully","time":"2023-05-18T00:25:22+02:00"}
+{"level":"info","msg":"Users retrieved successfully","time":"2023-05-18T00:25:23+02:00"}
+{"level":"info","msg":"Users retrieved successfully","time":"2023-05-18T00:25:24+02:00"}
+{"level":"info","msg":"Users retrieved successfully","time":"2023-05-18T00:25:37+02:00"}
+{"level":"info","msg":"Users retrieved successfully","time":"2023-05-18T00:25:38+02:00"}

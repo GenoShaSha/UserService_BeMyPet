@@ -11,6 +11,7 @@ func main() {
 	router := gin.Default()
 
 	router.POST("/register", service.RegisterUser)
+	router.POST("/login", service.Login)
 	router.GET("/users", service.GetUsers)
 	// router.GET("/products", GetProducts)
 	// router.GET("/products/:productId", GetSingleProduct)
@@ -18,7 +19,7 @@ func main() {
 	// router.DELETE("/products/:productId", DeleteProduct)
 
 	// Run the router
-	router.Run()
+	router.Run(":3000")
 
 	kafkaaccess.ConnectAndWriteMessage()
 	kafkaaccess.ConnectAndConsumeMessage()

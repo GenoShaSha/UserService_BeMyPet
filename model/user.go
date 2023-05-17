@@ -7,3 +7,8 @@ type User struct {
 	Password  string
 	Email     string
 }
+
+type LoginAttept struct {
+	Email    string
+	Password string
+}

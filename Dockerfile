@@ -16,8 +16,8 @@ COPY . ./
 # Build the binary.
 RUN go build -o main .
 #set environment
-ENV port=8080
+ENV port=3000
 #expose port so we can access the app
-EXPOSE 8080
+EXPOSE 3000
 #command to start the app , "PORT=0.0.0.0:8080"
 CMD ["go", "run", "main.go"]

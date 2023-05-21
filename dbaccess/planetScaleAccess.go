@@ -29,7 +29,7 @@ func ConnectToDb() *sql.DB {
 		log.Fatal("failed to load env", err)
 	}
 
-	db, err := sql.Open("mysql", os.Getenv("DNS"))
+	db, err := sql.Open("mysql", os.Getenv("DSN"))
 	if err != nil {
 		log.Fatalf("failed to connect: %v", err)
 	}

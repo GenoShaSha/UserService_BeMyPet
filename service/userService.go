@@ -103,7 +103,7 @@ func RegisterUser(c *gin.Context) {
 	}
 
 	query := `INSERT INTO user (first_name, last_name, email,password) VALUES (?, ?,?,?)`
-	res, err := db.Exec(query, userCarrier.FirstName, userCarrier.LastName, userCarrier.Email, hash)
+	res, err := db.Exec(query, userCarrier.Email, hash, userCarrier.Role)
 	if err != nil {
 		logger.WithFields(logrus.Fields{
 			"IP":     clientIP,
@@ -163,7 +163,7 @@ func GetUsers(c *gin.Context) {
 	users := []model.User{}
 	for res.Next() {
 		var user model.User
-		err := res.Scan(&user.ID, &user.FirstName, &user.LastName, &user.Email, &user.Password)
+		err := res.Scan(&user.ID, &user.Email, &user.Password, &user.Role)
 		if err != nil {
 			logger.WithFields(logrus.Fields{
 				"IP":     clientIP,
@@ -224,7 +224,7 @@ func Login(c *gin.Context) {
 	found := false
 	for rows.Next() {
 		var user model.User
-		if err := rows.Scan(&user.ID, &user.FirstName, &user.LastName, &user.Email, &user.Password); err != nil {
+		if err := rows.Scan(&user.ID, &user.Email, &user.Password, &user.Role); err != nil {
 			logger.Error(err)
 			log.Fatal(err)
 		}

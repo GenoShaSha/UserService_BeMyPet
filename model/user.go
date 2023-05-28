@@ -1,11 +1,10 @@
 package model
 
 type User struct {
-	ID        int64
-	FirstName string
-	LastName  string
-	Password  string
-	Email     string
+	ID       int64
+	Password string
+	Email    string
+	Role     string
 }
 
 type LoginAttept struct {

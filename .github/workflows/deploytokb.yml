@@ -17,7 +17,7 @@ jobs:
         uses: docker/setup-docker@v1
 
       - name: Build Docker image
-        run: docker build -t gnvshanessa/matching-service .
+        run: docker build -t gnvshanessa/user_service .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Push Docker image
-        run: docker push your-image-name
+        run: docker push gnvshanessa/user_service:latest
 
       - name: Set up Kubectl
         uses: azure/k8s-set-context@v1
@@ -34,5 +34,7 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
-      - name: Deploy to Kubernetes
-        run: kubectl apply -f deployment.yaml
+      - name: Redeploy to Kubernetes
+        run: |
+          kubectl delete -f deployment.yml
+          kubectl apply -f deployment.yml

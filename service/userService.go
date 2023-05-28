@@ -180,7 +180,14 @@ func GetUsers(c *gin.Context) {
 		"Status": "Success",
 	}).Info("Users retrieved successfully")
 
-	c.JSON(http.StatusOK, users)
+	type UsersResponse struct {
+		Users []model.User `json:"users"`
+	}
+
+	// Wrap the users array within an object
+	response := UsersResponse{Users: users}
+
+	c.JSON(http.StatusOK, response)
 }
 
 func Login(c *gin.Context) {

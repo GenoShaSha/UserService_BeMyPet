@@ -12,9 +12,17 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
+	cache "github.com/patrickmn/go-cache"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/crypto/bcrypt"
 )
+
+var usersCache *cache.Cache
+
+func init() {
+	// Initialize the cache with a default expiration time of 5 minutes
+	usersCache = cache.New(5*time.Minute, 10*time.Minute)
+}
 
 func RegisterUser(c *gin.Context) {
 	db := dbaccess.ConnectToDb()
@@ -131,6 +139,17 @@ func RegisterUser(c *gin.Context) {
 }
 
 func GetUsers(c *gin.Context) {
+	type UsersResponse struct {
+		Users []model.User `json:"users"`
+	}
+
+	// Check if the users are already cached
+	if cachedUsers, found := usersCache.Get("users"); found {
+		// If the users are cached, return the cached data
+		c.JSON(http.StatusOK, UsersResponse{Users: cachedUsers.([]model.User)})
+		return
+	}
+
 	db := dbaccess.ConnectToDb()
 	logger := logrus.New()
 	logger.SetLevel(logrus.InfoLevel)
@@ -174,15 +193,14 @@ func GetUsers(c *gin.Context) {
 		users = append(users, user)
 	}
 
+	// Store the retrieved users in the cache
+	usersCache.Set("users", users, cache.DefaultExpiration)
+
 	// Log the result to the file with client IP
 	logger.WithFields(logrus.Fields{
 		"IP":     clientIP,
 		"Status": "Success",
 	}).Info("Users retrieved successfully")
-
-	type UsersResponse struct {
-		Users []model.User `json:"users"`
-	}
 
 	// Wrap the users array within an object
 	response := UsersResponse{Users: users}

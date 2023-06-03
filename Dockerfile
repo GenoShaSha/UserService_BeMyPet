@@ -21,3 +21,5 @@ ENV port=3000
 EXPOSE 3000
 #command to start the app , "PORT=0.0.0.0:8080"
 CMD ["go", "run", "main.go"]
+# Add Datadog label for log collection
+LABEL "com.datadoghq.ad.logs"='[{"source": "nginx", "service": "user-service"}]'

@@ -19,7 +19,7 @@ RUN go build -o main .
 ENV port=3000
 #expose port so we can access the app
 EXPOSE 3000
+# Add Datadog label for log collection
+LABEL "com.datadoghq.ad.logs"='[{"source": "goapp", "service": "user-service"}]'
 #command to start the app , "PORT=0.0.0.0:8080"
 CMD ["go", "run", "main.go"]
-# Add Datadog label for log collection
-LABEL "com.datadoghq.ad.logs"='[{"source": "nginx", "service": "user-service"}]'

@@ -110,8 +110,8 @@ func RegisterUser(c *gin.Context) {
 		log.Fatal(err)
 	}
 
-	query := `INSERT INTO user (email,password,role) VALUES (?, ?,?)`
-	res, err := db.Exec(query, userCarrier.Email, hash, userCarrier.Role)
+	query := `INSERT INTO user (email,password) VALUES (?, ?)`
+	res, err := db.Exec(query, userCarrier.Email, hash)
 	if err != nil {
 		logger.WithFields(logrus.Fields{
 			"IP":     clientIP,

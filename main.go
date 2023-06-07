@@ -13,6 +13,9 @@ func main() {
 	router.POST("/register", service.RegisterUser)
 	router.POST("/login", service.Login)
 	router.GET("/users", service.GetUsers)
+	router.POST("/createAnimal", service.CreateAnimal)
+	router.GET("/animals", service.GetAnimals)
+
 	// router.GET("/products", GetProducts)
 	// router.GET("/products/:productId", GetSingleProduct)
 	// router.PUT("/products/:productId", UpdateProduct)

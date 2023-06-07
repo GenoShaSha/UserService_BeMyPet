@@ -52,7 +52,7 @@ func CreateAnimal(c *gin.Context) {
 		log.Fatal("(CreateAnimal) c.BindJSON", err)
 	}
 
-	query1 := `SELECT first_name, last_name FROM users WHERE first_name = ? AND last_name = ?`
+	query1 := `SELECT first_name, last_name FROM animal_profile WHERE first_name = ? AND last_name = ?`
 	rows, err := db.Query(query1, animalCarrier.FirstName, animalCarrier.LastName)
 	if err != nil {
 		logger.WithFields(logrus.Fields{
@@ -100,7 +100,7 @@ func CreateAnimal(c *gin.Context) {
 		}
 	}
 
-	query := `INSERT INTO animal_profile (picture, first_name, last_name, date_of_birth, gender, type, breed, shelter, address, postal_code, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+	query := `INSERT INTO animal_profile (picture, first_name, last_name, date_of_birth, gender, type, breed, shelter, address, postal_code, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 	res, err := db.Exec(query, animalCarrier.Picture, animalCarrier.FirstName, animalCarrier.LastName, animalCarrier.DateOfBirth, animalCarrier.Gender, animalCarrier.Type, animalCarrier.Breed, animalCarrier.Shelter, animalCarrier.Address, animalCarrier.PostalCode, animalCarrier.Bio)
 	if err != nil {
 		logger.WithFields(logrus.Fields{

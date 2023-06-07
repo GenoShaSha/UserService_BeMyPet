@@ -1,0 +1,3 @@
+{"IP":"::1","Status":"Error","level":"error","msg":"Error 1146 (42S02): target: bemypet.-.primary: vttablet: rpc error: code = NotFound desc = Table 'bemypet.users' doesn't exist (errno 1146) (sqlstate 42S02) (CallerID: nvhy105bqz2hipvwahho): Sql: \"select first_name, last_name from users where 1 != 1\", BindVars: {REDACTED}","time":"2023-06-07T16:58:57+02:00"}
+{"IP":"::1","Status":"Error","level":"error","msg":"(CreateAnimal) db.Execsql: expected 12 arguments, got 11","time":"2023-06-07T17:02:07+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-07T17:06:55+02:00"}

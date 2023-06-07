@@ -1,6 +1,7 @@
 package model
 
 type Animal struct {
+	UserID      int64  `json:"user_id"`
 	AnimalID    int64  `json:"animal_id"`
 	Picture     string `json:"picture"`
 	FirstName   string `json:"first_name"`

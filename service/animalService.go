@@ -100,8 +100,8 @@ func CreateAnimal(c *gin.Context) {
 		}
 	}
 
-	query := `INSERT INTO animal_profile (picture, first_name, last_name, date_of_birth, gender, type, breed, shelter, address, postal_code, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-	res, err := db.Exec(query, animalCarrier.Picture, animalCarrier.FirstName, animalCarrier.LastName, animalCarrier.DateOfBirth, animalCarrier.Gender, animalCarrier.Type, animalCarrier.Breed, animalCarrier.Shelter, animalCarrier.Address, animalCarrier.PostalCode, animalCarrier.Bio)
+	query := `INSERT INTO animal_profile (user_id,picture, first_name, last_name, date_of_birth, gender, type, breed, shelter, address, postal_code, bio) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+	res, err := db.Exec(query, animalCarrier.UserID, animalCarrier.Picture, animalCarrier.FirstName, animalCarrier.LastName, animalCarrier.DateOfBirth, animalCarrier.Gender, animalCarrier.Type, animalCarrier.Breed, animalCarrier.Shelter, animalCarrier.Address, animalCarrier.PostalCode, animalCarrier.Bio)
 	if err != nil {
 		logger.WithFields(logrus.Fields{
 			"IP":     clientIP,
@@ -174,7 +174,7 @@ func GetAnimals(c *gin.Context) {
 	for res.Next() {
 		var animal model.Animal
 
-		err := res.Scan(&animal.AnimalID, &animal.Picture, &animal.FirstName, &animal.LastName, &animal.DateOfBirth, &animal.Gender, &animal.Type, &animal.Breed, &animal.Shelter, &animal.Address, &animal.PostalCode, &animal.Bio)
+		err := res.Scan(&animal.UserID, &animal.AnimalID, &animal.Picture, &animal.FirstName, &animal.LastName, &animal.DateOfBirth, &animal.Gender, &animal.Type, &animal.Breed, &animal.Shelter, &animal.Address, &animal.PostalCode, &animal.Bio)
 		if err != nil {
 			logger.WithFields(logrus.Fields{
 				"IP":     clientIP,

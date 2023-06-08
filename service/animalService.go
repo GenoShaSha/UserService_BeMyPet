@@ -135,14 +135,6 @@ func GetAnimals(c *gin.Context) {
 	type AnimalsResponse struct {
 		Animals []model.Animal `json:"animals"`
 	}
-
-	// Check if the users are already cached
-	if cachedAnimals, found := animalsCache.Get("animals"); found {
-		// If the users are cached, return the cached data
-		c.JSON(http.StatusOK, AnimalsResponse{Animals: cachedAnimals.([]model.Animal)})
-		return
-	}
-
 	db := dbaccess.ConnectToDb()
 	logger := logrus.New()
 	logger.SetLevel(logrus.InfoLevel)

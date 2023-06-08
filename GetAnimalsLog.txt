@@ -1,2 +1,4 @@
 {"IP":"::1","Status":"Error","level":"error","msg":"(GetAnimals) res.Scansql: Scan error on column index 0, name \"user_id\": converting NULL to int64 is unsupported","time":"2023-06-07T17:40:59+02:00"}
 {"IP":"::1","Status":"Success","level":"info","msg":"Animals retrieved successfully","time":"2023-06-07T17:42:27+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animals retrieved successfully","time":"2023-06-08T17:51:10+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animals retrieved successfully","time":"2023-06-08T17:51:48+02:00"}

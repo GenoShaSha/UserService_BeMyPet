@@ -4,3 +4,10 @@
 {"IP":"::1","Status":"Error","level":"error","msg":"The profile is already exist","time":"2023-06-07T17:20:02+02:00"}
 The profile is already exist{"BytesWritten":28,"IP":"::1","Status":"Error","level":"info","msg":"Bytes written to file","time":"2023-06-07T17:20:02+02:00"}
 {"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-07T17:20:07+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-08T17:50:37+02:00"}
+{"IP":"::1","Status":"Error","level":"error","msg":"The profile is already exist","time":"2023-06-08T17:50:45+02:00"}
+The profile is already exist{"BytesWritten":28,"IP":"::1","Status":"Error","level":"info","msg":"Bytes written to file","time":"2023-06-08T17:50:45+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-08T17:50:54+02:00"}
+{"IP":"::1","Status":"Error","level":"error","msg":"The profile is already exist","time":"2023-06-08T17:51:39+02:00"}
+The profile is already exist{"BytesWritten":28,"IP":"::1","Status":"Error","level":"info","msg":"Bytes written to file","time":"2023-06-08T17:51:39+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-08T17:51:44+02:00"}

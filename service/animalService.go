@@ -125,7 +125,7 @@ func CreateAnimal(c *gin.Context) {
 		"Status": "Success",
 	}).Info("Animal created successfully")
 
-	animalsCache.Flush()
+	animalsCache.Delete("animals")
 
 	c.JSON(http.StatusOK, animalCarrier)
 }

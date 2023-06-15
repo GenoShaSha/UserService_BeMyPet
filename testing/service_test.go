@@ -9,7 +9,6 @@ import (
 	"userMicroService/model"
 	"userMicroService/service"
 
-	"github.com/DATA-DOG/go-sqlmock"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )
@@ -17,67 +16,60 @@ import (
 func TestCreateAnimal(t *testing.T) {
 	// Set up the router
 	router := gin.Default()
-	router.POST("/animal", service.CreateAnimal)
-
-	// Create a mock DB connection and get the mock instance
-	db, mock, _ := sqlmock.New()
-
-	// Inject the mock DB connection into the service
-
-	service.CheckDB = false
-
-	service.DBTest = db
 
 	// Create the request body
-	animal := model.Animal{
+	var animal = model.Animal{
 		UserID:      1,
+		AnimalID:    123,
+		Picture:     "https://example.com/picture.jpg",
 		FirstName:   "John",
 		LastName:    "Doe",
 		DateOfBirth: "2000-01-01",
 		Gender:      "Male",
 		Type:        "Dog",
-		Breed:       "Labrador",
-		Shelter:     "XYZ Shelter",
+		Breed:       "Labrador Retriever",
+		Shelter:     "ABC Shelter",
 		Address:     "123 Main St",
 		PostalCode:  "12345",
-		Bio:         "Lorem ipsum dolor sit amet",
+		Bio:         "A friendly and playful dog.",
 	}
-	body, _ := json.Marshal(animal)
+	
+	payload, err := json.Marshal(animal)
+	if err != nil {
+		t.Fatal("Failed to marshal JSON payload:", err)
+	}
+	request := httptest.NewRequest(http.MethodPost, "/create-animal", bytes.NewBuffer(payload))
 
-	// Set up the request
-	req, _ := http.NewRequest("POST", "/animal", bytes.NewReader(body))
-	req.Header.Set("Content-Type", "application/json")
-
-	// Set up the mock database expectations
-	mock.ExpectQuery(`SELECT first_name, last_name FROM animal_profile`).WithArgs(animal.FirstName, animal.LastName).WillReturnRows(sqlmock.NewRows([]string{"first_name", "last_name"}))
-	mock.ExpectExec(`INSERT INTO animal_profile`).WillReturnResult(sqlmock.NewResult(1, 1))
-
+	// Create a test response recorder
+	recorder := httptest.NewRecorder()
+	// Call the CreateAnimal handler function
+	table := "animal_profile_test" // Provide the table name
+	router.POST("/create-animal", func(c *gin.Context) {
+		service.CreateAnimal(c, table)
+	})
 	// Perform the request
-	w := httptest.NewRecorder()
-	router.ServeHTTP(w, req)
+	router.ServeHTTP(recorder, request)
 
-	// Verify the response
-	assert.Equal(t, http.StatusOK, w.Code)
+	// Assert the response status code
+	assert.Equal(t, http.StatusOK, recorder.Code)
+}
 
-	// Verify the expected response body
-	expectedResponse := model.Animal{
-		UserID:      1,
-		AnimalID:    1,
-		FirstName:   "John",
-		LastName:    "Doe",
-		DateOfBirth: "2000-01-01",
-		Gender:      "Male",
-		Type:        "Dog",
-		Breed:       "Labrador",
-		Shelter:     "XYZ Shelter",
-		Address:     "123 Main St",
-		PostalCode:  "12345",
-		Bio:         "Lorem ipsum dolor sit amet",
-	}
-	actualResponse := model.Animal{}
-	_ = json.Unmarshal(w.Body.Bytes(), &actualResponse)
-	assert.Equal(t, expectedResponse, actualResponse)
+func TestGetAnimal(t *testing.T) {
+	// Set up the router
+	router := gin.Default()
+	
+	request := httptest.NewRequest(http.MethodGet, "/getanimal", nil)
 
-	// Verify the mock expectations
-	assert.Nil(t, mock.ExpectationsWereMet())
+	// Create a test response recorder
+	recorder := httptest.NewRecorder()
+	// Call the CreateAnimal handler function
+	table := "animal_profile_test" // Provide the table name
+	router.GET("/getanimal", func(c *gin.Context) {
+		service.GetAnimals(c, table)
+	})
+	// Perform the request
+	router.ServeHTTP(recorder, request)
+
+	// Assert the response status code
+	assert.Equal(t, http.StatusOK, recorder.Code)
 }

@@ -23,7 +23,7 @@ func init() {
 }
 
 //Create Animal
-func CreateAnimal(c *gin.Context) {
+func CreateAnimal(c *gin.Context,table string) {
 	db := dbaccess.ConnectToDb()
 	logger := logrus.New()
 	logger.SetLevel(logrus.InfoLevel)
@@ -100,7 +100,7 @@ func CreateAnimal(c *gin.Context) {
 		}
 	}
 
-	query := `INSERT INTO animal_profile (user_id,picture, first_name, last_name, date_of_birth, gender, type, breed, shelter, address, postal_code, bio) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+	query := fmt.Sprintf("INSERT INTO %s (user_id, picture, first_name, last_name, date_of_birth, gender, type, breed, shelter, address, postal_code, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", table)
 	res, err := db.Exec(query, animalCarrier.UserID, animalCarrier.Picture, animalCarrier.FirstName, animalCarrier.LastName, animalCarrier.DateOfBirth, animalCarrier.Gender, animalCarrier.Type, animalCarrier.Breed, animalCarrier.Shelter, animalCarrier.Address, animalCarrier.PostalCode, animalCarrier.Bio)
 	if err != nil {
 		logger.WithFields(logrus.Fields{
@@ -131,7 +131,7 @@ func CreateAnimal(c *gin.Context) {
 }
 
 //Get Animals
-func GetAnimals(c *gin.Context) {
+func GetAnimals(c *gin.Context,table string) {
 	type AnimalsResponse struct {
 		Animals []model.Animal `json:"animals"`
 	}
@@ -161,7 +161,7 @@ func GetAnimals(c *gin.Context) {
 	// Get client IP
 	clientIP := c.ClientIP()
 
-	query := "SELECT * FROM animal_profile"
+	query := fmt.Sprintf("SELECT * FROM %s", table)
 	res, err := db.Query(query)
 	defer res.Close()
 	if err != nil {

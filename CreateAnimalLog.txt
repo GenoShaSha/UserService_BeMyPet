@@ -11,3 +11,11 @@ The profile is already exist{"BytesWritten":28,"IP":"::1","Status":"Error","leve
 {"IP":"::1","Status":"Error","level":"error","msg":"The profile is already exist","time":"2023-06-08T17:51:39+02:00"}
 The profile is already exist{"BytesWritten":28,"IP":"::1","Status":"Error","level":"info","msg":"Bytes written to file","time":"2023-06-08T17:51:39+02:00"}
 {"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-08T17:51:44+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-15T01:40:41+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-15T01:40:47+02:00"}
+{"IP":"::1","Status":"Error","level":"error","msg":"(CreateAnimal) c.BindJSONjson: cannot unmarshal string into Go struct field Animal.animal_id of type int64","time":"2023-06-15T01:41:44+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"Animal created successfully","time":"2023-06-15T01:42:22+02:00"}
+{"IP":"::1","Status":"Error","level":"error","msg":"The profile is already exist","time":"2023-06-15T01:55:14+02:00"}
+The profile is already exist{"BytesWritten":28,"IP":"::1","Status":"Error","level":"info","msg":"Bytes written to file","time":"2023-06-15T01:55:14+02:00"}
+{"IP":"::1","Status":"Error","level":"error","msg":"(CreateAnimal) c.BindJSONEOF","time":"2023-06-15T01:55:18+02:00"}
+{"IP":"::1","Status":"Error","level":"error","msg":"(CreateAnimal) c.BindJSONEOF","time":"2023-06-15T01:55:38+02:00"}

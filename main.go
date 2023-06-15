@@ -9,12 +9,17 @@ import (
 
 func main() {
 	router := gin.Default()
+	tableAnimal := "animal_profile" // Provide the table name
 
 	router.POST("/register", service.RegisterUser)
 	router.POST("/login", service.Login)
 	router.GET("/users", service.GetUsers)
-	router.POST("/createAnimal", service.CreateAnimal)
-	router.GET("/animals", service.GetAnimals)
+	router.POST("/createAnimal", func(c *gin.Context) {
+		service.CreateAnimal(c, tableAnimal)
+	})
+	router.GET("/animals", func(c *gin.Context) {
+		service.GetAnimals(c, tableAnimal)
+	})
 
 	// router.GET("/products", GetProducts)
 	// router.GET("/products/:productId", GetSingleProduct)

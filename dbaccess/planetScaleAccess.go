@@ -3,10 +3,8 @@ package dbaccess
 import (
 	"database/sql"
 	"log"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/joho/godotenv"
 )
 
 // func ConnectToDb() (context.Context, *mongo.Database, *mongo.Collection) {
@@ -24,12 +22,9 @@ import (
 // }
 
 func ConnectToDb() *sql.DB {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("failed to load env", err)
-	}
 
-	db, err := sql.Open("mysql", os.Getenv("DSN"))
+
+	db, err := sql.Open("mysql", "nvhy105bqz2hipvwahho:pscale_pw_9TtMkYnAYwXMVtk313V32hobtbdTlNrEad7GTzIcyNk@tcp(aws.connect.psdb.cloud)/bemypet?tls=true")
 	if err != nil {
 		log.Fatalf("failed to connect: %v", err)
 	}

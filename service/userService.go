@@ -24,7 +24,7 @@ func init() {
 	usersCache = cache.New(5*time.Minute, 10*time.Minute)
 }
 
-func RegisterUser(c *gin.Context) {
+func RegisterUser(c *gin.Context,table string) {
 	db := dbaccess.ConnectToDb()
 	logger := logrus.New()
 	logger.SetLevel(logrus.InfoLevel)
@@ -53,7 +53,7 @@ func RegisterUser(c *gin.Context) {
 		log.Fatal("(RegisterUser) c.BindJSON", err)
 	}
 
-	query1 := `SELECT email FROM user WHERE email = ?`
+	query1 := fmt.Sprintf("SELECT email FROM %s WHERE email = ?", table)
 	rows, err := db.Query(query1, userCarrier.Email)
 	if err != nil {
 		logger.WithFields(logrus.Fields{
@@ -110,7 +110,7 @@ func RegisterUser(c *gin.Context) {
 		log.Fatal(err)
 	}
 
-	query := `INSERT INTO user (email,password) VALUES (?, ?)`
+	query := fmt.Sprintf("INSERT INTO %s (email,password) VALUES (?, ?)", table)
 	res, err := db.Exec(query, userCarrier.Email, hash)
 	if err != nil {
 		logger.WithFields(logrus.Fields{
@@ -208,7 +208,7 @@ func GetUsers(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-func Login(c *gin.Context) {
+func Login(c *gin.Context,table string) {
 	db := dbaccess.ConnectToDb()
 	logger := logrus.New()
 	logger.SetLevel(logrus.InfoLevel)
@@ -238,7 +238,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	query := `SELECT * FROM user WHERE email = ?`
+	query := fmt.Sprintf("SELECT * FROM %s WHERE email = ?", table)
 	rows, err := db.Query(query, attempt.Email)
 	if err != nil {
 		logger.Error(err)

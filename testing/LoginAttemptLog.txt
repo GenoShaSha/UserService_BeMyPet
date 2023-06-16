@@ -1,0 +1,2 @@
+{"Email":"test-20230616165330@example.com","IP":"192.0.2.1","Status":"Success","level":"info","msg":"Login successful","time":"2023-06-16T17:06:00+02:00"}
+{"Email":"test-20230616165330@example.com","IP":"192.0.2.1","Status":"Success","level":"info","msg":"Login successful","time":"2023-06-16T17:07:01+02:00"}

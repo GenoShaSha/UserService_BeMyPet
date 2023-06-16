@@ -10,3 +10,4 @@ Email already exists{"BytesWritten":20,"IP":"::1","Status":"Error","level":"info
 {"IP":"::1","Status":"Error","level":"error","msg":"Email already exists","time":"2023-06-07T14:41:38+02:00"}
 Email already exists{"BytesWritten":20,"IP":"::1","Status":"Error","level":"info","msg":"Bytes written to file","time":"2023-06-07T14:41:38+02:00"}
 {"IP":"::1","Status":"Success","level":"info","msg":"User registered successfully","time":"2023-06-07T14:41:44+02:00"}
+{"IP":"::1","Status":"Success","level":"info","msg":"User registered successfully","time":"2023-06-16T16:31:19+02:00"}

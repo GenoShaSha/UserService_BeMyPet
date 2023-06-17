@@ -273,7 +273,9 @@ func Login(c *gin.Context,table string) {
 			"expire": time.Now().Add(time.Hour * 24 * 30).Unix(),
 		})
 
-		tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
+		token.Header["kid"] = "sim2"
+
+		tokenString, err := token.SignedString([]byte("daksoj3028ihubgkjnlkvm243y7rufied"))
 		if err != nil {
 			logger.WithFields(logrus.Fields{
 				"IP":     clientIP,

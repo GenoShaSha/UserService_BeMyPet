@@ -24,7 +24,7 @@ import (
 func ConnectToDb() *sql.DB {
 
 
-	db, err := sql.Open("mysql", "nvhy105bqz2hipvwahho:pscale_pw_9TtMkYnAYwXMVtk313V32hobtbdTlNrEad7GTzIcyNk@tcp(aws.connect.psdb.cloud)/bemypet?tls=true")
+	db, err := sql.Open("mysql", "ivi01xiryhw2nbk11rgb:pscale_pw_hC6omT7ldcKl9uiCdkdthnGd8Pi9zhTobmsPV1oQpKt@tcp(aws.connect.psdb.cloud)/bemypet?tls=true")
 	if err != nil {
 		log.Fatalf("failed to connect: %v", err)
 	}

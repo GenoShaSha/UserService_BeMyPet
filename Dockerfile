@@ -1,6 +1,6 @@
 
 #base image to be used
-FROM golang:1.18.3-alpine as builder
+FROM golang:1.20.7-alpine as builder
 #select app folder
 WORKDIR /UserService_BeMyPet
 #copy go file to install packages
